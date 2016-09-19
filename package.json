@@ -4,6 +4,7 @@
   "private": true,
   "description": "Chromium extension for seamless node debug",
   "scripts": {
+    "install:native_host_app": "./host/install.sh",
     "lint": "./node_modules/.bin/eslint extension/",
     "pep8": "pep8 host/",
     "test": "npm run lint"
