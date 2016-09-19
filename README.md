@@ -9,3 +9,6 @@ $ cd chr-chr-chr
 $ nvm use # in case you're osx user
 $ npm install
 ```
+
+## Other
+Chromium extension id: `lfmolhfcmmgnacfibfpbemchjmcekkii`
