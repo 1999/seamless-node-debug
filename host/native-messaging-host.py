@@ -1,7 +1,9 @@
 #!/usr/bin/env python
 
-import struct
+import os
+import socket
 import sys
+import tempfile
 
 # On Windows, the default I/O mode is O_TEXT. Set this to O_BINARY
 # to avoid unwanted modifications of the input/output streams.
@@ -13,37 +15,40 @@ if sys.platform == 'win32':
     msvcrt.setmode(sys.stdout.fileno(), os.O_BINARY)
 
 
-# Helper function that sends a message to the webapp.
-def send_message(message):
-    # write message size
-    sys.stdout.write(struct.pack('I', len(message)))
+# Listen to incoming connections to UNIX socket
+def listen_unix_socket():
+    # @see https://docs.python.org/3/library/tempfile.html#tempfile.gettempdir
+    tmp_dir = tempfile.gettempdir()
+    socket_file_path = os.path.join(tmp_dir, 'chr-chr-chr.sock')
 
-    # write message itself
-    sys.stdout.write(message)
-    sys.stdout.flush()
+    if os.path.exists(socket_file_path):
+        os.remove(socket_file_path)
 
+    print 'Start listening to incoming connections to %s...' % socket_file_path
 
-# Thread that reads messages from the webapp
-def read_thread_func():
+    server = socket.socket(socket.AF_UNIX)
+    server.bind(socket_file_path)
+    server.listen(5)
+
+    conn, addr = server.accept()
+    print 'Connected by %s' % addr
+
     while True:
-        # read the message length (first 4 bytes)
-        message_length_bytes = sys.stdin.read(4)
-        print str(message_length_bytes)
+        message = conn.recv(1024)
+        if not message:
+            break
 
-        if len(message_length_bytes) == 0:
-            sys.exit(0)
+        print message
 
-        # unpack message length as 4 byte integer
-        message_length = struct.unpack('i', message_length_bytes)[0]
-
-        # read the text (JSON object) of the message
-        message = sys.stdin.read(message_length).decode('utf-8')
-        send_message('{"echo": %s}' % text)
+    conn.close()
+    os.remove(socket_file_path)
+    print 'Shutting down...'
 
 
 def main():
-    read_thread_func()
+    listen_unix_socket()
     sys.exit(0)
+
 
 if __name__ == '__main__':
     main()
