@@ -21,4 +21,4 @@ Python native messaging app which is started by Chromium. It emits new devtools 
 2. Restart Chromium-based browser
 3. Install chrome extension to chrome://extensions directory
 
-That's it. Starting from now you can send new devtools URL to unix socket `{os.tmpdir}/chr-chr-chr.sock`. It will be transmitted to chromium extension which will replace existing devtools tab with this new URL.
+That's it. Starting from now you can send new devtools URL to unix socket ([example](https://github.yandex-team.ru/kino/chr-chr-chr/blob/master/host/example-send.js)) `{os.tmpdir}/chr-chr-chr.sock`. It will be transmitted to chromium extension which will replace existing devtools tab with this new URL.
