@@ -3,6 +3,9 @@
 
 const HOST_NAME = 'com.yandex.media.domino.frontend.chr';
 const RECONNECT_TIMEOUT_SEC = 5;
+const CONNECT_WAIT_TIMEOUT_SEC = 1;
+
+let connectionTimeoutId;
 
 /**
  * Select best devtools tab to update.
@@ -85,12 +88,21 @@ const onDisconnected = () => {
     console.log(`Reconnect in ${RECONNECT_TIMEOUT_SEC} seconds...`);
 
     setTimeout(tryConnectToPort, RECONNECT_TIMEOUT_SEC * 1000);
+    clearTimeout(connectionTimeoutId);
+};
+
+const onConnected = () => {
+    console.log('Connected!');
 };
 
 const tryConnectToPort = () => {
+    console.log('Trying to connect to port...');
+
     const port = chrome.runtime.connectNative(HOST_NAME);
     port.onMessage.addListener(onNativeMessage);
     port.onDisconnect.addListener(onDisconnected);
+
+    connectionTimeoutId = setTimeout(onConnected, CONNECT_WAIT_TIMEOUT_SEC * 1000);
 };
 
 // connect to host when extension is loaded

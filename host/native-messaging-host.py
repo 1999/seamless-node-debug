@@ -15,6 +15,11 @@ if sys.platform == 'win32':
     msvcrt.setmode(sys.stdout.fileno(), os.O_BINARY)
 
 
+def print_debug(message):
+    sys.stderr.write(message)
+    sys.stderr.flush()
+
+
 # Listen to incoming connections to UNIX socket
 def listen_unix_socket():
     # @see https://docs.python.org/3/library/tempfile.html#tempfile.gettempdir
@@ -24,25 +29,28 @@ def listen_unix_socket():
     if os.path.exists(socket_file_path):
         os.remove(socket_file_path)
 
-    print 'Start listening to incoming connections to %s...' % socket_file_path
+    print_debug(
+        'Start listening to incoming connections to %s...' % socket_file_path
+    )
 
     server = socket.socket(socket.AF_UNIX)
     server.bind(socket_file_path)
     server.listen(5)
 
     conn, addr = server.accept()
-    print 'Connected by %s' % addr
+    print_debug('Connected by %s' % addr)
 
     while True:
         message = conn.recv(1024)
         if not message:
             break
 
+        print_debug('Got message: %s' % message)
         print message
 
     conn.close()
     os.remove(socket_file_path)
-    print 'Shutting down...'
+    print_debug('Shutting down...')
 
 
 def main():

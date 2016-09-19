@@ -8,5 +8,5 @@ insert_final_newline = true
 charset = utf-8
 trim_trailing_whitespace = true
 
-[{package.json,extension/manifest.json}]
+[{package.json,extension/manifest.json,extension/native-messaging-manifest.json}]
 indent_size = 2
