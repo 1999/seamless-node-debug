@@ -5,6 +5,7 @@
   "description": "Chromium extension for seamless node debug",
   "scripts": {
     "lint": "./node_modules/.bin/eslint extension/",
+    "pep8": "pep8 host/",
     "test": "npm run lint"
   },
   "repository": {
@@ -16,5 +17,5 @@
     "eslint": "^3.5.0",
     "pre-commit": "^1.1.3"
   },
-  "pre-commit": "lint"
+  "pre-commit": [ "lint", "pep8" ]
 }
