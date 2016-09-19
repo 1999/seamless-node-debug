@@ -4,7 +4,9 @@
 const HOST_NAME = 'com.yandex.media.domino.frontend.chr';
 const RECONNECT_TIMEOUT_SEC = 5;
 const CONNECT_WAIT_TIMEOUT_SEC = 1;
+const DEVTOOLS_URL_PREFIX = 'chrome-devtools://devtools/remote';
 
+let lastDevtoolsTabId;
 let connectionTimeoutId;
 
 /**
@@ -15,6 +17,12 @@ let connectionTimeoutId;
  * @return {number} tab id
  */
 const selectTabToUpdate = (tabs) => {
+    // try to use previous devtools tab id
+    const lastUsedTabIndex = tabs.findIndex(tab => (tab.id === lastDevtoolsTabId));
+    if (lastUsedTabIndex !== -1) {
+        return tabs[lastUsedTabIndex].id;
+    }
+
     tabs.sort((a, b) => {
         // focused windows should be used first
         const windowFocusDiff = Number(b.windowFocused) - Number(a.windowFocused);
@@ -47,7 +55,7 @@ const updateDevToolsTab = (newUrl) => {
 
         for (let window of windows) {
             for (let tab of window.tabs) {
-                if (tab.url.startsWith('chrome-devtools://devtools/remote')) {
+                if (tab.url.startsWith(DEVTOOLS_URL_PREFIX)) {
                     devToolsTabs.push({
                         id: tab.id,
                         tabActive: tab.active,
@@ -59,12 +67,16 @@ const updateDevToolsTab = (newUrl) => {
 
         if (devToolsTabs.length) {
             const tabIdToUpdate = selectTabToUpdate(devToolsTabs);
+            lastDevtoolsTabId = tabIdToUpdate;
+
             chrome.tabs.update(tabIdToUpdate, {
                 url: newUrl,
                 highlighted: true
             });
         } else {
-            chrome.tabs.create({url: newUrl});
+            chrome.tabs.create({url: newUrl}, tab => {
+                lastDevtoolsTabId = tab.id;
+            });
         }
     });
 };
