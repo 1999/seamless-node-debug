@@ -1,0 +1,9 @@
+{
+  "name": "com.yandex.media.domino.frontend.chr",
+  "description": "Seamless node debug for domino-frontend",
+  "path": "HOST_PATH",
+  "type": "stdio",
+  "allowed_origins": [
+    "chrome-extension://lfmolhfcmmgnacfibfpbemchjmcekkii/"
+  ]
+}
