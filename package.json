@@ -4,7 +4,7 @@
   "description": "Seamless node debug with chromium extension",
   "license": "MIT",
   "scripts": {
-    "install:native_host_app": "./host/install.sh",
+    "install": "./host/install.sh",
     "lint": "./node_modules/.bin/eslint extension/",
     "pep8": "pep8 host/",
     "test": "npm run lint"
