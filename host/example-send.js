@@ -3,7 +3,7 @@
 const os = require('os');
 const net = require('net');
 
-const SOCKET_FILE_PATH = `${os.tmpdir()}/chr-chr-chr.sock`;
+const SOCKET_FILE_PATH = `${os.tmpdir()}/seamless-node-debug.sock`;
 const client = net.createConnection(SOCKET_FILE_PATH);
 
 client

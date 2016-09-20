@@ -1,8 +1,7 @@
 {
-  "name": "chr-chr-chr",
+  "name": "seamless-node-debug",
   "version": "1.0.0",
-  "private": true,
-  "description": "Chromium extension for seamless node debug",
+  "description": "Seamless node debug with chromium extension",
   "scripts": {
     "install:native_host_app": "./host/install.sh",
     "lint": "./node_modules/.bin/eslint extension/",
@@ -11,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@github.yandex-team.ru:kino/chr-chr-chr.git"
+    "url": "git@github.yandex-team.ru:kino/seamless-node-debug.git"
   },
   "author": "Dmitry Sorin <dsorin@yandex-team.ru>",
   "devDependencies": {

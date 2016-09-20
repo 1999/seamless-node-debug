@@ -2,7 +2,7 @@
 
 set -e
 
-HOST_NAME=com.yandex.media.domino.frontend.chr
+HOST_NAME=com.yandex.media.domino.frontend.snd
 DIR="$( cd "$( dirname "$0" )" && cd "../" && pwd )"
 
 PS3="Please enter your choice: "

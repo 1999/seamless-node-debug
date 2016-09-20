@@ -1,5 +1,5 @@
 {
-  "name": "com.yandex.media.domino.frontend.chr",
+  "name": "com.yandex.media.domino.frontend.snd",
   "description": "Seamless node debug for domino-frontend",
   "path": "HOST_PATH",
   "type": "stdio",

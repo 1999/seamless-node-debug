@@ -35,7 +35,7 @@ def send_message(message):
 def listen_unix_socket():
     # @see https://docs.python.org/3/library/tempfile.html#tempfile.gettempdir
     tmp_dir = tempfile.gettempdir()
-    socket_file_path = os.path.join(tmp_dir, 'chr-chr-chr.sock')
+    socket_file_path = os.path.join(tmp_dir, 'seamless-node-debug.sock')
 
     if os.path.exists(socket_file_path):
         os.remove(socket_file_path)

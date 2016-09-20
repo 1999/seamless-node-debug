@@ -1,11 +1,11 @@
-# chr-chr-chr
-Chromium extension for seamless node debug
+# seamless-node-debug
+Seamless node debug with chromium extension
 
 ## Develop
 ```bash
 $ # clone repo
-$ git clone git@github.yandex-team.ru:kino/chr-chr-chr.git
-$ cd chr-chr-chr
+$ git clone git@github.yandex-team.ru:kino/seamless-node-debug.git
+$ cd seamless-node-debug
 $ nvm use # in case you're osx user
 $ npm install
 ```
@@ -21,4 +21,4 @@ Python native messaging app which is started by Chromium. It emits new devtools 
 2. Restart Chromium-based browser
 3. Install chrome extension to chrome://extensions directory
 
-That's it. Starting from now you can send new devtools URL to unix socket ([example](https://github.yandex-team.ru/kino/chr-chr-chr/blob/master/host/example-send.js)) `{os.tmpdir}/chr-chr-chr.sock`. It will be transmitted to chromium extension which will replace existing devtools tab with this new URL.
+That's it. Starting from now you can send new devtools URL to unix socket ([example](https://github.yandex-team.ru/kino/seamless-node-debug/blob/master/host/example-send.js)) `{os.tmpdir}/seamless-node-debug.sock`. It will be transmitted to chromium extension which will replace existing devtools tab with this new URL.

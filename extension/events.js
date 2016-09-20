@@ -1,7 +1,7 @@
 /* global chrome */
 'use strict';
 
-const HOST_NAME = 'com.yandex.media.domino.frontend.chr';
+const HOST_NAME = 'com.yandex.media.domino.frontend.snd';
 const RECONNECT_TIMEOUT_SEC = 5;
 const CONNECT_WAIT_TIMEOUT_SEC = 1;
 const DEVTOOLS_URL_PREFIX = 'chrome-devtools://devtools/remote';
