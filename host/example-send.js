@@ -16,5 +16,5 @@ client
 
 setInterval(() => {
     const url = `chrome-devtools://devtools/remote/${Date.now()}`;
-    client.write(`${JSON.stringify({url})}\n`);
+    client.write(`${url}\n`);
 }, 1000)

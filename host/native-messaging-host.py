@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 
+import json
 import os
 import socket
 import struct
@@ -57,7 +58,7 @@ def listen_unix_socket():
             break
 
         print_debug('Got message: %s' % message)
-        send_message(message)
+        send_message(json.dumps({"url": message}))
 
     conn.close()
     os.remove(socket_file_path)
