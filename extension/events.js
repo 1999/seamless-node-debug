@@ -89,7 +89,7 @@ const updateDevToolsTab = (newUrl) => {
 const onNativeMessage = (message) => {
     console.log(`Got message from host: ${JSON.stringify(message)}`);
 
-    updateDevToolsTab('http://kinopoisk.ru/?foo=bar');
+    updateDevToolsTab(message.url);
 };
 
 /**

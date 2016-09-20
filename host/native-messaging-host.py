@@ -2,6 +2,7 @@
 
 import os
 import socket
+import struct
 import sys
 import tempfile
 
@@ -18,6 +19,16 @@ if sys.platform == 'win32':
 def print_debug(message):
     sys.stderr.write(message)
     sys.stderr.flush()
+
+
+# Helper function that sends a message to the webapp.
+def send_message(message):
+    # write message size
+    sys.stdout.write(struct.pack('I', len(message)))
+
+    # write the message itself
+    sys.stdout.write(message)
+    sys.stdout.flush()
 
 
 # Listen to incoming connections to UNIX socket
@@ -46,7 +57,7 @@ def listen_unix_socket():
             break
 
         print_debug('Got message: %s' % message)
-        print message
+        send_message(message)
 
     conn.close()
     os.remove(socket_file_path)
@@ -59,4 +70,5 @@ def main():
 
 
 if __name__ == '__main__':
+    print_debug('Starting host app...')
     main()
