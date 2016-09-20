@@ -36,6 +36,7 @@ if [ "$(uname -s)" = "Darwin" ]; then
 else
     # Linux
     echo "Unsupported OS. Sorry"
+    exit 1
 fi
 
 # create directory to store native messaging host
