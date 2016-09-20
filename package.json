@@ -2,6 +2,7 @@
   "name": "seamless-node-debug",
   "version": "1.0.0",
   "description": "Seamless node debug with chromium extension",
+  "license": "MIT",
   "scripts": {
     "install:native_host_app": "./host/install.sh",
     "lint": "./node_modules/.bin/eslint extension/",
