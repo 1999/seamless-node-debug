@@ -10,15 +10,17 @@ $ nvm use # in case you're osx user
 $ npm install
 ```
 
-## Chromium extension
+## How-to (live example)
+1. Add `seamless-node-debug` to devDependencies of your app.
+2. Clone this project and install chromium extension from "extension" directory to your browser.
+3. Send new URLs to Unix socket `{os.tmpdir}/seamless-node-debug.sock` and browser tab with devtools inspector will be replaced with it immediately.
+4. Profit (Вигода)!
+
+## How does it all work
+This repo consists of two parts: chromium extension, native host app and example of node.js script which communicates to Unix socket. Native host app is started by browser when first extension starts listening to events from this app.
+
+### Chromium extension
 Chromium extension id is `lfmolhfcmmgnacfibfpbemchjmcekkii`. Extension listens to native host app which is started by Chromium. Native host app emits new devtools URL to stdout.
 
-## Native host app
+### Native host app
 Python native messaging app which is started by Chromium. It emits new devtools URL to stdout and listens to messages from unix socket.
-
-## How-to (live example)
-1. Install native messaging app with `npm run install:native_host_app`
-2. Restart Chromium-based browser
-3. Install chrome extension to chrome://extensions directory
-
-That's it. Starting from now you can send new devtools URL to unix socket ([example](https://github.yandex-team.ru/kino/seamless-node-debug/blob/master/host/example-send.js)) `{os.tmpdir}/seamless-node-debug.sock`. It will be transmitted to chromium extension which will replace existing devtools tab with this new URL.
