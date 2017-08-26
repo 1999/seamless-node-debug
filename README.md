@@ -1,4 +1,6 @@
 # seamless-node-debug
+
+[![Greenkeeper badge](https://badges.greenkeeper.io/1999/seamless-node-debug.svg)](https://greenkeeper.io/)
 Seamless node debug with chromium extension
 
 ## Develop
