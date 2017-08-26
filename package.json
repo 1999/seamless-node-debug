@@ -15,7 +15,7 @@
   },
   "author": "Dmitry Sorin <dsorin@yandex-team.ru>",
   "devDependencies": {
-    "eslint": "^3.5.0",
+    "eslint": "^4.5.0",
     "pre-commit": "^1.1.3"
   },
   "pre-commit": [ "lint", "pep8" ]
